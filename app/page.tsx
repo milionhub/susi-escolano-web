@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { Services } from "@/components/sections/Services";
+import { WhatWeDo } from "@/components/sections/WhatWeDo";
+import { Projects } from "@/components/sections/Projects";
 import { PLACEHOLDER_SECTIONS } from "@/lib/constants";
 
 export default function Home() {
@@ -8,7 +9,8 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <Services />
+      <WhatWeDo />
+      <Projects />
 
       {/* Placeholder sections — Fases 3 y 4 */}
       {PLACEHOLDER_SECTIONS.map((s) => (

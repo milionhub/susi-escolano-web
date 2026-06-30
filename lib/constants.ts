@@ -11,7 +11,7 @@ export const COMPANY = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Servicios", href: "#servicios" },
+  { label: "Qué hacemos", href: "#que-hacemos" },
   { label: "Proyectos", href: "#proyectos" },
   { label: "Nosotros", href: "#nosotros" },
   { label: "Contacto", href: "#contacto" },
@@ -21,8 +21,8 @@ export const NAV_LINKS = [
 // Imagen de sección de vivienda. Para sustituirla: actualiza src y ajusta
 // las coordenadas de hotspot y region en ROOMS.
 export const HOUSE_RENDER = {
-  src: "/images/hero/house-cutaway.png",
-  alt: "Render de sección de vivienda — Susi Escolano Reformas & Interiorismo",
+  src: "/images/hero/hero.webp",
+  alt: "Proyecto de reforma e interiorismo — Susi Escolano",
 } as const;
 
 export interface Room {
@@ -136,7 +136,6 @@ export const SERVICES: Service[] = [
 ];
 
 export const PLACEHOLDER_SECTIONS = [
-  { id: "proyectos", label: "Proyectos", bg: "bg-[#FAFAF8]", text: "text-[#1C1C1A]" },
   { id: "nosotros", label: "Nosotros", bg: "bg-[#F5F3EF]", text: "text-[#1C1C1A]" },
   { id: "contacto", label: "Contacto", bg: "bg-[#1C1C1A]", text: "text-white" },
 ] as const;
