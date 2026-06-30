@@ -13,6 +13,8 @@ export const COMPANY = {
 export const NAV_LINKS = [
   { label: "Qué hacemos", href: "#que-hacemos" },
   { label: "Proyectos", href: "#proyectos" },
+  { label: "Proceso", href: "#proceso" },
+  { label: "Antes y Después", href: "#antes-despues" },
   { label: "Nosotros", href: "#nosotros" },
   { label: "Contacto", href: "#contacto" },
 ] as const;
