@@ -424,6 +424,7 @@ export function Projects() {
         <div className="flex flex-col gap-28 md:gap-40">
           <ProjectCard project={PROJECTS[0]} />
           <ProjectCard project={PROJECTS[1]} />
+          <ProjectCard project={PROJECTS[2]} />
         </div>
 
       </div>
