@@ -141,6 +141,15 @@
   }
 }
 
+/* Ocultar scrollbar manteniendo funcionalidad de scroll */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* Hero image container — height in vh (Tailwind v4 arbitrary vh classes don't compile) */
 .hero-image {
   position: relative;
