@@ -153,14 +153,14 @@
 /* Hero image container — height in vh (Tailwind v4 arbitrary vh classes don't compile) */
 .hero-image {
   position: relative;
-  height: 55vh;
+  height: 58vh;
   margin-left: 0;
   margin-right: 0;
 }
 
 @media (min-width: 768px) {
   .hero-image {
-    height: 63vh;
+    height: 66vh;
     margin-left: 4%;
     margin-right: 4%;
   }

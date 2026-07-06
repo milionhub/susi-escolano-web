@@ -1,13 +1,24 @@
+// ─── Datos de contacto ──────────────────────────────────────────────────────────
+// TEMPORAL: phone, whatsapp y email son datos de prueba. Sustituir por los
+// definitivos de la empresa en cuanto estén disponibles — son las únicas
+// tres variables que hay que tocar, se usan en toda la web (Hero, Navbar,
+// Footer, Contact) a través de este objeto COMPANY.
 export const COMPANY = {
   name: "SUSI ESCOLANO",
   tagline: "Reformas & Interiorismo",
-  phone: "+34 600 000 000",
-  whatsapp: "34600000000",
+  phone: "+34 655 821 170",
+  whatsapp: "34655821170",
   whatsappMessage:
-    "Hola, me gustaría solicitar presupuesto para una reforma.",
-  email: "info@susiescola.es",
+    "Hola, me gustaría solicitar información sobre una reforma.\n\nSi es posible, me gustaría pedir un presupuesto.\n\nGracias.",
+  email: "juanmarinescolano@gmail.com",
+  landlinePhone: "965 43 71 67",
+  address: {
+    street: "Carrer la Sénia, 13, Bajo",
+    postal: "03201 Elche (Alicante)",
+  },
   location: "Elche, Alicante y Santa Pola",
   zones: ["Elche", "Alicante", "Santa Pola", "Torrevieja"],
+  schedule: "Lunes a viernes · 9:00–14:00 y 16:00–19:00",
 } as const;
 
 export const NAV_LINKS = [
@@ -15,7 +26,7 @@ export const NAV_LINKS = [
   { label: "Proyectos", href: "#proyectos" },
   { label: "Proceso", href: "#proceso" },
   { label: "Antes y Después", href: "#antes-despues" },
-  { label: "Nosotros", href: "#nosotros" },
+  { label: "Por qué confiar", href: "#por-que-confiar" },
   { label: "Contacto", href: "#contacto" },
 ] as const;
 
@@ -136,8 +147,3 @@ export const SERVICES: Service[] = [
       "Proyectos de interiorismo que reflejan tu personalidad. Cada detalle, pensado para crear espacios únicos.",
   },
 ];
-
-export const PLACEHOLDER_SECTIONS = [
-  { id: "nosotros", label: "Nosotros", bg: "bg-[#F5F3EF]", text: "text-[#1C1C1A]" },
-  { id: "contacto", label: "Contacto", bg: "bg-[#1C1C1A]", text: "text-white" },
-] as const;

@@ -224,8 +224,7 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     className="font-sans text-[#6B665F] mb-2"
                     style={{ fontSize: "10px", letterSpacing: "0.14em" }}
                   >
-                    {project.type} · {project.year}
-                    {project.surface ? ` · ${project.surface}` : ""}
+                    {project.surface} · {project.type}
                   </p>
                   <p className="font-sans text-[12px] leading-relaxed text-[#6B665F] max-w-[520px] hidden md:block">
                     {project.description}
@@ -320,52 +319,63 @@ function ProjectCard({ project }: { project: Project }) {
         </motion.div>
 
         {/* ── Info ────────────────────────────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65, ease, delay: 0.55 }}
-          className="pt-7 md:pt-8"
-        >
-          <p
+        <div className="pt-7 md:pt-8">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease, delay: 0.42 }}
             className="font-sans text-[#B08B64] mb-2.5 leading-none"
             style={{ fontSize: "9px", letterSpacing: "0.18em" }}
           >
             {project.number}
-          </p>
+          </motion.p>
 
-          <h3
+          <motion.h3
+            initial={{ opacity: 0, y: 14 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease, delay: 0.5 }}
             className="font-display font-light text-[#202020] leading-tight tracking-[-0.01em] mb-1.5"
             style={{ fontSize: "clamp(1.45rem, 2.2vw, 1.8rem)" }}
           >
             {project.title}
-          </h3>
+          </motion.h3>
 
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease, delay: 0.58 }}
             className="font-sans text-[#6B665F] mb-5 md:mb-6"
             style={{ fontSize: "10.5px", letterSpacing: "0.12em" }}
           >
-            {project.type} · {project.year}
-            {project.surface ? ` · ${project.surface}` : ""}
-          </p>
+            {project.surface} · {project.type}
+          </motion.p>
 
-          <p className="font-sans text-[13px] leading-relaxed text-[#6B665F] max-w-[480px] mb-7 hidden md:block">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55, ease, delay: 0.66 }}
+            className="font-sans text-[13px] leading-relaxed text-[#6B665F] max-w-[480px] mb-7 hidden md:block"
+          >
             {project.description}
-          </p>
+          </motion.p>
 
           {/* CTA */}
           <motion.button
             onClick={() => setModalOpen(true)}
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease, delay: 0.74 }}
             className="inline-flex items-center gap-3 px-6 py-[11px] border border-[#202020]/20 font-sans text-[9.5px] tracking-[0.22em] uppercase text-[#202020]"
             whileHover={{
               backgroundColor: "rgba(32,32,32,0.04)",
               borderColor: "rgba(32,32,32,0.38)",
+              transition: { duration: 0.3, ease: "easeOut" },
             }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            Ver proyecto
+            Explorar proyecto
             <ArrowRight size={10} strokeWidth={1.5} />
           </motion.button>
-        </motion.div>
+        </div>
 
       </div>
 
@@ -384,16 +394,19 @@ export function Projects() {
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-80px" });
 
   return (
-    <section id="proyectos" className="bg-[#F6F3EE] px-[4%] py-28 md:py-40">
+    <section
+      id="proyectos"
+      className="bg-[#F6F3EE] px-[4%] pt-20 pb-20 md:pt-24 md:pb-40"
+    >
       <div className="mx-auto max-w-[1440px]">
 
         {/* ── Header ────────────────────────────────────────── */}
-        <div ref={headerRef} className="mb-14 md:mb-20">
+        <div ref={headerRef} className="mb-10 md:mb-14">
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, ease, delay: 0.05 }}
-            className="font-sans text-[#B08B64] mb-9"
+            className="font-sans text-[#B08B64] mb-5 md:mb-6"
             style={{ fontSize: "8px", letterSpacing: "0.5em" }}
           >
             PROYECTOS
@@ -403,10 +416,10 @@ export function Projects() {
             initial={{ opacity: 0, y: 22, filter: "blur(4px)" }}
             animate={isHeaderInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 0.85, ease, delay: 0.14 }}
-            className="font-display font-light text-[#202020] leading-[1.1] tracking-[-0.01em] max-w-[560px] mb-5"
+            className="font-display font-light text-[#202020] leading-[1.1] tracking-[-0.01em] max-w-[560px] mb-4"
             style={{ fontSize: "clamp(1.9rem, 3.2vw, 3rem)" }}
           >
-            Cada proyecto refleja una forma de entender el diseño.
+            Espacios que hablan por sí solos.
           </motion.h2>
 
           <motion.p
@@ -415,9 +428,8 @@ export function Projects() {
             transition={{ duration: 0.6, ease, delay: 0.26 }}
             className="font-sans text-[13px] leading-relaxed text-[#6B665F] max-w-[420px]"
           >
-            Una selección de trabajos que refleja nuestra manera de entender
-            cada encargo: con cuidado, con criterio y con vocación por el
-            detalle.
+            Una selección de proyectos donde el diseño, la ejecución y el
+            cuidado por el detalle hablan por nosotros.
           </motion.p>
         </div>
 

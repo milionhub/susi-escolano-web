@@ -60,7 +60,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-sans text-[9px] tracking-[0.22em] uppercase text-[#202020] hover:text-[#B08B64] transition-colors duration-300"
+                className="relative font-sans text-[9px] tracking-[0.22em] uppercase text-[#202020] transition-colors duration-[250ms] hover:text-[#B08B64] after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#B08B64] after:transition-transform after:duration-[250ms] after:ease-out hover:after:scale-x-100"
               >
                 {link.label}
               </Link>
@@ -71,9 +71,9 @@ export function Navbar() {
           <div className="flex items-center justify-end gap-5">
             <a
               href="#contacto"
-              className="hidden md:block font-sans text-[9px] tracking-[0.22em] uppercase text-[#202020] hover:text-[#B08B64] transition-colors duration-300"
+              className="hidden md:block font-sans text-[9px] tracking-[0.2em] uppercase text-[#6B665F] hover:text-[#B08B64] transition-colors duration-300"
             >
-              Solicitar presupuesto
+              Hablemos →
             </a>
             <button
               onClick={() => setMenuOpen(true)}
@@ -131,7 +131,7 @@ export function Navbar() {
               transition={{ delay: 0.42 }}
               className="mt-10 font-sans text-[9px] tracking-[0.3em] uppercase text-[#B08B64]"
             >
-              Solicitar presupuesto →
+              Hablemos →
             </motion.a>
           </motion.div>
         )}

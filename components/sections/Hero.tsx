@@ -2,9 +2,13 @@
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
-import { HOUSE_RENDER } from "@/lib/constants";
+import { COMPANY, HOUSE_RENDER } from "@/lib/constants";
 
 const ease = [0.25, 0.46, 0.45, 0.94] as [number, number, number, number];
+
+const WHATSAPP_HREF = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
+  COMPANY.whatsappMessage
+)}`;
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -40,17 +44,19 @@ export function Hero() {
       </motion.div>
 
       {/* ── Text ──────────────────────────────────────────────────── */}
-      <div className="px-[4%] pt-7 md:pt-9 pb-16 md:pb-14">
+      <div className="px-[4%] pt-7 md:pt-9 pb-20 md:pb-14">
 
-        {/* Label */}
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.28 }}
-          className="font-sans text-[8px] tracking-[0.5em] uppercase text-[#B08B64] mb-6 md:mb-7"
-        >
-          Reformas · Interiorismo · Proyectos
-        </motion.p>
+        {/* Label — progressive reveal */}
+        <div className="overflow-hidden mb-4 md:mb-5">
+          <motion.p
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 0.2 }}
+            className="font-sans text-[8px] tracking-[0.5em] uppercase text-[#B08B64]"
+          >
+            Reformas · Interiorismo · Proyectos
+          </motion.p>
+        </div>
 
         {/* Title + CTAs row */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-24 lg:gap-32">
@@ -58,16 +64,16 @@ export function Hero() {
           {/* Left: title + description */}
           <div>
             {/* Clip-path / slide-up reveal */}
-            <div className="overflow-hidden mb-5 md:mb-6">
+            <div className="overflow-hidden mb-3 md:mb-4">
               <motion.h1
                 initial={{ y: "108%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.88, ease, delay: 0.44 }}
-                className="font-display font-light text-[#202020] text-[2.4rem] md:text-[2.9rem] lg:text-[3.4rem] leading-[1.08] tracking-[-0.01em]"
+                className="font-display font-normal text-[#202020] text-[2.4rem] md:text-[2.9rem] lg:text-[3.4rem] leading-[1.08] tracking-[-0.01em]"
               >
-                Diseñamos espacios
+                Reformamos viviendas.
                 <br />
-                para toda la vida.
+                Diseñamos hogares.
               </motion.h1>
             </div>
 
@@ -77,8 +83,7 @@ export function Hero() {
               transition={{ duration: 0.65, ease, delay: 0.68 }}
               className="font-sans text-[13px] leading-relaxed text-[#6B665F] max-w-[440px]"
             >
-              Diseñamos, coordinamos y ejecutamos cada proyecto de principio
-              a fin para que tú solo tengas que disfrutar del resultado.
+              Diseñamos, coordinamos y ejecutamos cada proyecto con el mismo cuidado que pondríamos en el nuestro.
             </motion.p>
           </div>
 
@@ -90,7 +95,9 @@ export function Hero() {
             className="flex flex-row md:flex-col items-start md:items-end gap-5 md:gap-4 flex-shrink-0"
           >
             <motion.a
-              href="#contacto"
+              href={WHATSAPP_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-6 py-[11px] border border-[#202020]/20 font-sans text-[9.5px] tracking-[0.22em] uppercase text-[#202020]"
               whileHover={{
                 backgroundColor: "rgba(32,32,32,0.05)",
@@ -98,7 +105,7 @@ export function Hero() {
               }}
               transition={{ duration: 0.35, ease: "easeOut" }}
             >
-              Solicitar presupuesto
+              Hablemos de tu proyecto
             </motion.a>
 
             <a

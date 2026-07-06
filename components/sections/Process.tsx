@@ -52,7 +52,7 @@ const PH = 1 / 7;
 function IntroContent({ progress }: { progress: MotionValue<number> }) {
   // FM v12 bug: function form prevents ghost at opacity ~0.4 when inputRange[0] === 0
   const opacity = useTransform(progress, (v) =>
-    v >= PH ? 0 : v <= PH * 0.58 ? 1 : 1 - (v - PH * 0.58) / (PH * 0.42)
+    v >= PH ? 0 : v <= PH * 0.58 ? 1 : 1 - (v - PH * 0.58) / (PH * 0.42),
   );
   const y = useTransform(progress, [PH * 0.55, PH], [0, -45]);
 
@@ -62,27 +62,35 @@ function IntroContent({ progress }: { progress: MotionValue<number> }) {
       style={{ opacity, y, willChange: "transform, opacity" }}
     >
       <p
-        className="font-sans text-[#B08B64] mb-10 md:mb-14"
+        className="mb-5 font-sans text-[#B08B64] md:mb-6"
         style={{ fontSize: "9px", letterSpacing: "0.5em" }}
       >
         NUESTRO PROCESO
       </p>
 
-      <div className="overflow-hidden mb-7 md:mb-9">
+      <div className="mb-4 overflow-hidden md:mb-5">
         <motion.h2
-          className="font-display font-light text-[#202020] leading-[1.06] tracking-[-0.025em] max-w-[680px]"
+          className="font-display max-w-[680px] leading-[1.06] font-light tracking-[-0.025em] text-[#202020]"
           style={{ fontSize: "clamp(2.5rem, 6vw, 6rem)" }}
           initial={{ y: "100%" }}
           animate={{ y: "0%" }}
-          transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
+          transition={{
+            duration: 0.9,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            delay: 0.1,
+          }}
         >
           Cada gran proyecto comienza mucho antes de la obra.
         </motion.h2>
       </div>
 
       <p
-        className="font-sans text-[#6B665F] max-w-[340px] mb-14 md:mb-18"
-        style={{ fontSize: "13px", lineHeight: "1.7", letterSpacing: "0.015em" }}
+        className="mb-8 max-w-[340px] font-sans text-[#6B665F] md:mb-10"
+        style={{
+          fontSize: "13px",
+          lineHeight: "1.7",
+          letterSpacing: "0.015em",
+        }}
       >
         Cinco pasos. Un resultado.
       </p>
@@ -92,7 +100,7 @@ function IntroContent({ progress }: { progress: MotionValue<number> }) {
         animate={{ y: [0, 7, 0] }}
         transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="w-px h-8 bg-[#B08B64]/40" />
+        <div className="h-8 w-px bg-[#B08B64]/40" />
         <span
           className="font-sans text-[#9B9389]"
           style={{ fontSize: "8.5px", letterSpacing: "0.32em" }}
@@ -121,18 +129,18 @@ function StepContent({ progress, step, index }: StepContentProps) {
   const enterEnd = phaseStart + PH * 0.24;
   const textEnterEnd = phaseStart + PH * 0.38;
   const exitStart = isLast ? phaseEnd - PH * 0.42 : phaseEnd - PH * 0.22;
-  const exitEnd   = isLast ? phaseEnd              : phaseEnd + PH * 0.05;
+  const exitEnd = isLast ? phaseEnd : phaseEnd + PH * 0.05;
 
   const opacity = useTransform(
     progress,
     [phaseStart, phaseStart + PH * 0.04, exitStart, exitEnd],
-    [0, 1, 1, 0]
+    [0, 1, 1, 0],
   );
   const exitY = useTransform(progress, [exitStart, exitEnd], [0, -40]);
   // Function form — avoids FM v12 string-interpolation clamping issues
   const exitBlur = useTransform(progress, (v) => {
     if (v <= exitStart) return "blur(0px)";
-    if (v >= exitEnd)   return "blur(10px)";
+    if (v >= exitEnd) return "blur(10px)";
     return `blur(${((v - exitStart) / (exitEnd - exitStart)) * 10}px)`;
   });
   const verbY = useTransform(progress, [phaseStart, enterEnd], ["102%", "0%"]);
@@ -141,21 +149,26 @@ function StepContent({ progress, step, index }: StepContentProps) {
   const descOpacity = useTransform(
     progress,
     [phaseStart + PH * 0.14, textEnterEnd],
-    [0, 1]
+    [0, 1],
   );
   const descY = useTransform(
     progress,
     [phaseStart + PH * 0.14, textEnterEnd],
-    [14, 0]
+    [14, 0],
   );
 
   return (
     <motion.div
       className="absolute inset-0 flex flex-col justify-center px-[6%] md:px-[8%]"
-      style={{ opacity, y: exitY, filter: exitBlur, willChange: "transform, opacity, filter" }}
+      style={{
+        opacity,
+        y: exitY,
+        filter: exitBlur,
+        willChange: "transform, opacity, filter",
+      }}
     >
       <motion.p
-        className="font-sans text-[#B08B64] mb-7 md:mb-10"
+        className="mb-5 font-sans text-[#B08B64] md:mb-6"
         style={{
           fontSize: "9px",
           letterSpacing: "0.45em",
@@ -166,9 +179,9 @@ function StepContent({ progress, step, index }: StepContentProps) {
         {step.number}
       </motion.p>
 
-      <div className="overflow-hidden mb-8 md:mb-11">
+      <div className="mb-4 overflow-hidden md:mb-5">
         <motion.h2
-          className="font-display font-light text-[#202020] leading-[0.94] tracking-[-0.04em]"
+          className="font-display leading-[0.94] font-light tracking-[-0.04em] text-[#202020]"
           style={{ fontSize: "clamp(4rem, 11.5vw, 12rem)", y: verbY }}
         >
           {step.verb}
@@ -176,7 +189,7 @@ function StepContent({ progress, step, index }: StepContentProps) {
       </div>
 
       <motion.p
-        className="font-sans text-[#6B665F] max-w-[400px]"
+        className="max-w-[400px] font-sans text-[#6B665F]"
         style={{
           fontSize: "14px",
           lineHeight: "1.78",
@@ -206,7 +219,7 @@ function CodaContent({ progress }: { progress: MotionValue<number> }) {
   const y = useTransform(
     progress,
     [codaStart, codaStart + fadeDuration],
-    [28, 0]
+    [28, 0],
   );
 
   return (
@@ -214,19 +227,22 @@ function CodaContent({ progress }: { progress: MotionValue<number> }) {
       className="absolute inset-0 flex flex-col items-center justify-center px-[8%] text-center"
       style={{ opacity, y, willChange: "transform, opacity" }}
     >
-      <div className="w-8 h-px bg-[#B08B64]/50 mb-12 md:mb-16" />
+      <div className="mb-8 h-px w-8 bg-[#B08B64]/50 md:mb-10" />
       <h2
-        className="font-display font-light text-[#202020] leading-[1.1] tracking-[-0.025em] mb-8 md:mb-10 max-w-[640px]"
+        className="font-display mb-4 max-w-[640px] leading-[1.1] font-light tracking-[-0.025em] text-[#202020] md:mb-5"
         style={{ fontSize: "clamp(2.2rem, 5vw, 4.8rem)" }}
       >
-        El resultado habla por sí mismo.
+        El diseño empieza mucho antes de la obra.
       </h2>
       <p
-        className="font-sans text-[#6B665F] max-w-[340px]"
-        style={{ fontSize: "13px", lineHeight: "1.78", letterSpacing: "0.015em" }}
+        className="max-w-[340px] font-sans text-[#6B665F]"
+        style={{
+          fontSize: "13px",
+          lineHeight: "1.78",
+          letterSpacing: "0.015em",
+        }}
       >
-        Cada proyecto refleja el nivel de cuidado que ponemos en cada detalle,
-        desde el primer boceto hasta la entrega final.
+        Un buen resultado nace de un proceso bien pensado.
       </p>
     </motion.div>
   );
@@ -246,7 +262,7 @@ function StepIndicator({
 
   return (
     <div>
-      <div className="flex items-center gap-6 md:gap-8 mb-3">
+      <div className="mb-3 flex items-center gap-6 md:gap-8">
         {STEPS.map((step, i) => (
           <span
             key={step.number}
@@ -258,8 +274,8 @@ function StepIndicator({
                 i === activeStep
                   ? "#B08B64"
                   : i < activeStep
-                  ? "rgba(32,32,32,0.38)"
-                  : "rgba(32,32,32,0.15)",
+                    ? "rgba(32,32,32,0.38)"
+                    : "rgba(32,32,32,0.15)",
             }}
           >
             {step.number}
@@ -267,7 +283,7 @@ function StepIndicator({
         ))}
       </div>
 
-      <div className="relative h-px w-full bg-[#202020]/10 overflow-hidden">
+      <div className="relative h-px w-full overflow-hidden bg-[#202020]/10">
         <motion.div
           className="absolute inset-y-0 left-0 w-full bg-[#B08B64]"
           style={{ scaleX, transformOrigin: "left" }}
@@ -295,7 +311,8 @@ export function Process() {
     const fadeOutStart = 6 * PH;
     const fadeOutEnd = 6 * PH + PH * 0.38;
     if (v < fadeOutStart) return 1;
-    if (v < fadeOutEnd) return 1 - (v - fadeOutStart) / (fadeOutEnd - fadeOutStart);
+    if (v < fadeOutEnd)
+      return 1 - (v - fadeOutStart) / (fadeOutEnd - fadeOutStart);
     return 0;
   });
 
@@ -308,13 +325,12 @@ export function Process() {
     <section
       ref={sectionRef}
       id="proceso"
-      className="relative bg-[#EFE8DF] h-[380vh] md:h-[440vh]"
+      className="relative h-[380vh] bg-[#EFE8DF] md:h-[440vh]"
     >
       <div className="sticky top-0 h-screen overflow-hidden bg-[#EFE8DF]">
-
         {/* Indicator */}
         <motion.div
-          className="absolute top-[92px] md:top-[100px] left-[6%] md:left-[8%] right-[6%] md:right-[8%] z-10"
+          className="absolute top-[92px] right-[6%] left-[6%] z-10 md:top-[100px] md:right-[8%] md:left-[8%]"
           style={{ opacity: indicatorOpacity }}
         >
           <StepIndicator progress={scrollYProgress} activeStep={activeStep} />
@@ -333,7 +349,6 @@ export function Process() {
           ))}
           <CodaContent progress={scrollYProgress} />
         </div>
-
       </div>
     </section>
   );

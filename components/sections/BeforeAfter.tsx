@@ -24,7 +24,7 @@ const TRANSFORMATIONS: Transformation[] = [
     location: "El Altet, Alicante",
     year: "2023",
     before: { src: "", alt: "Antes — Vivienda en Elche" },
-    after:  { src: "", alt: "Después — Vivienda en Elche" },
+    after: { src: "", alt: "Después — Vivienda en Elche" },
   },
   {
     id: "t-02",
@@ -33,7 +33,7 @@ const TRANSFORMATIONS: Transformation[] = [
     location: "Santa Pola, Alicante",
     year: "2023",
     before: { src: "", alt: "Antes — Cocina en Santa Pola" },
-    after:  { src: "", alt: "Después — Cocina en Santa Pola" },
+    after: { src: "", alt: "Después — Cocina en Santa Pola" },
   },
   {
     id: "t-03",
@@ -42,7 +42,7 @@ const TRANSFORMATIONS: Transformation[] = [
     location: "Alicante",
     year: "2024",
     before: { src: "", alt: "Antes — Baño en Alicante" },
-    after:  { src: "", alt: "Después — Baño en Alicante" },
+    after: { src: "", alt: "Después — Baño en Alicante" },
   },
   {
     id: "t-04",
@@ -51,7 +51,7 @@ const TRANSFORMATIONS: Transformation[] = [
     location: "Crevillente, Alicante",
     year: "2024",
     before: { src: "", alt: "Antes — Salón en Crevillente" },
-    after:  { src: "", alt: "Después — Salón en Crevillente" },
+    after: { src: "", alt: "Después — Salón en Crevillente" },
   },
   {
     id: "t-05",
@@ -60,7 +60,7 @@ const TRANSFORMATIONS: Transformation[] = [
     location: "El Altet, Alicante",
     year: "2024",
     before: { src: "", alt: "Antes — Dormitorio en El Altet" },
-    after:  { src: "", alt: "Después — Dormitorio en El Altet" },
+    after: { src: "", alt: "Después — Dormitorio en El Altet" },
   },
   {
     id: "t-06",
@@ -69,7 +69,7 @@ const TRANSFORMATIONS: Transformation[] = [
     location: "Murcia",
     year: "2025",
     before: { src: "", alt: "Antes — Vivienda en Murcia" },
-    after:  { src: "", alt: "Después — Vivienda en Murcia" },
+    after: { src: "", alt: "Después — Vivienda en Murcia" },
   },
   {
     id: "t-07",
@@ -78,7 +78,7 @@ const TRANSFORMATIONS: Transformation[] = [
     location: "Arenales del Sol, Alicante",
     year: "2025",
     before: { src: "", alt: "Antes — Baño en Arenales del Sol" },
-    after:  { src: "", alt: "Después — Baño en Arenales del Sol" },
+    after: { src: "", alt: "Después — Baño en Arenales del Sol" },
   },
   {
     id: "t-08",
@@ -87,7 +87,7 @@ const TRANSFORMATIONS: Transformation[] = [
     location: "Elche, Alicante",
     year: "2025",
     before: { src: "", alt: "Antes — Cocina en Elche" },
-    after:  { src: "", alt: "Después — Cocina en Elche" },
+    after: { src: "", alt: "Después — Cocina en Elche" },
   },
   {
     id: "t-09",
@@ -96,7 +96,7 @@ const TRANSFORMATIONS: Transformation[] = [
     location: "Torrevieja, Alicante",
     year: "2026",
     before: { src: "", alt: "Antes — Vivienda en Torrevieja" },
-    after:  { src: "", alt: "Después — Vivienda en Torrevieja" },
+    after: { src: "", alt: "Después — Vivienda en Torrevieja" },
   },
 ];
 
@@ -128,7 +128,7 @@ function BeforeAfterSlider({ transformation }: SliderProps) {
       e.currentTarget.setPointerCapture(e.pointerId);
       updatePosition(e.clientX);
     },
-    [updatePosition]
+    [updatePosition],
   );
 
   const handlePointerMove = useCallback(
@@ -136,7 +136,7 @@ function BeforeAfterSlider({ transformation }: SliderProps) {
       if (!isDragging) return;
       updatePosition(e.clientX);
     },
-    [isDragging, updatePosition]
+    [isDragging, updatePosition],
   );
 
   const handlePointerUp = useCallback(() => setIsDragging(false), []);
@@ -144,7 +144,7 @@ function BeforeAfterSlider({ transformation }: SliderProps) {
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden select-none touch-none"
+      className="relative touch-none overflow-hidden select-none"
       style={{
         aspectRatio: "16 / 10",
         cursor: "col-resize",
@@ -165,7 +165,7 @@ function BeforeAfterSlider({ transformation }: SliderProps) {
         style={{ background: "#D8D1C8" }}
       >
         <span
-          className="absolute bottom-4 right-5 font-sans text-white/50"
+          className="absolute right-5 bottom-4 font-sans text-white/50"
           style={{ fontSize: "8px", letterSpacing: "0.4em" }}
         >
           DESPUÉS
@@ -192,7 +192,7 @@ function BeforeAfterSlider({ transformation }: SliderProps) {
 
       {/* ── Divider + handle ─────────────────────────────────── */}
       <div
-        className="absolute top-0 bottom-0 pointer-events-none"
+        className="pointer-events-none absolute top-0 bottom-0"
         style={{ left: `${position}%`, transform: "translateX(-50%)" }}
       >
         {/* Vertical line */}
@@ -201,7 +201,7 @@ function BeforeAfterSlider({ transformation }: SliderProps) {
         {/* Circle handle */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div
-            className="flex items-center justify-center w-9 h-9 rounded-full bg-white"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-white"
             style={{
               boxShadow:
                 "0 2px 20px rgba(0,0,0,0.10), 0 1px 5px rgba(0,0,0,0.07)",
@@ -248,27 +248,29 @@ export function BeforeAfter() {
   };
 
   return (
-    <section id="antes-despues" className="bg-[#EFE8DF] pt-36 md:pt-48 pb-28 md:pb-40">
-
+    <section
+      id="antes-despues"
+      className="bg-[#F6F3EE] pt-20 pb-20 md:pt-28 md:pb-40"
+    >
       {/* ── Section header ──────────────────────────────────────── */}
       <motion.div
-        className="px-[6%] md:px-[8%] mb-16 md:mb-24 max-w-[560px]"
+        className="mb-10 max-w-[560px] px-[6%] md:mb-14 md:px-[8%]"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.9, ease: EASE }}
       >
         <p
-          className="font-sans text-[#B08B64] mb-8 md:mb-10"
+          className="mb-5 font-sans text-[#B08B64] md:mb-6"
           style={{ fontSize: "9px", letterSpacing: "0.5em" }}
         >
           ANTES Y DESPUÉS
         </p>
         <h2
-          className="font-display font-light text-[#202020] leading-[1.06] tracking-[-0.025em] mb-6 md:mb-7"
+          className="font-display mb-4 leading-[1.06] font-light tracking-[-0.025em] text-[#202020]"
           style={{ fontSize: "clamp(2.4rem, 5.5vw, 5.2rem)" }}
         >
-          Transformaciones que hablan por sí solas.
+          Cuando el diseño transforma un espacio.
         </h2>
         <p
           className="font-sans text-[#6B665F]"
@@ -279,7 +281,8 @@ export function BeforeAfter() {
             maxWidth: "340px",
           }}
         >
-          El antes muestra el punto de partida. El después, el resultado.
+          Descubre algunos de los cambios que mejor reflejan nuestra forma de
+          trabajar.
         </p>
       </motion.div>
 
@@ -291,7 +294,7 @@ export function BeforeAfter() {
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 1, ease: EASE, delay: 0.1 }}
       >
-        <div className="w-full md:w-[78%] md:mx-auto">
+        <div className="w-full md:mx-auto md:w-[78%]">
           {/* Fixed-aspect wrapper so AnimatePresence doesn't collapse the height */}
           <div className="relative" style={{ aspectRatio: "16 / 10" }}>
             <AnimatePresence>
@@ -319,18 +322,25 @@ export function BeforeAfter() {
 
       {/* ── Project info + navigation ────────────────────────────── */}
       <div className="px-[6%] md:px-[8%]">
-        <div className="w-full md:w-[78%] md:mx-auto mt-8 md:mt-10">
-
+        <div className="mt-8 w-full md:mx-auto md:mt-10 md:w-[78%]">
           {/* Project name + type — crossfades on change */}
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
               initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } }}
-              exit={{ opacity: 0, y: -6, transition: { duration: 0.25, ease: EASE } }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.4, ease: EASE },
+              }}
+              exit={{
+                opacity: 0,
+                y: -6,
+                transition: { duration: 0.25, ease: EASE },
+              }}
             >
               <h3
-                className="font-display font-light text-[#202020] tracking-[-0.02em] mb-1.5"
+                className="font-display mb-1.5 font-light tracking-[-0.02em] text-[#202020]"
                 style={{ fontSize: "clamp(1.2rem, 2vw, 1.5rem)" }}
               >
                 {TRANSFORMATIONS[current].projectName}
@@ -349,11 +359,11 @@ export function BeforeAfter() {
           </AnimatePresence>
 
           {/* Navigation */}
-          <div className="flex items-center gap-8 mt-10 md:mt-12">
+          <div className="mt-10 flex items-center gap-8 md:mt-12">
             <button
               onClick={() => navigate(current - 1)}
               disabled={current === 0}
-              className="flex items-center gap-2 font-sans text-[#202020] transition-all duration-300 disabled:opacity-20 hover:text-[#B08B64]"
+              className="flex items-center gap-2 font-sans text-[#202020] transition-all duration-300 hover:text-[#B08B64] disabled:opacity-20"
               style={{ fontSize: "11px", letterSpacing: "0.12em" }}
               aria-label="Proyecto anterior"
             >
@@ -365,13 +375,14 @@ export function BeforeAfter() {
               className="font-sans text-[#9B9389] tabular-nums"
               style={{ fontSize: "10px", letterSpacing: "0.18em" }}
             >
-              {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+              {String(current + 1).padStart(2, "0")} /{" "}
+              {String(total).padStart(2, "0")}
             </span>
 
             <button
               onClick={() => navigate(current + 1)}
               disabled={current === total - 1}
-              className="flex items-center gap-2 font-sans text-[#202020] transition-all duration-300 disabled:opacity-20 hover:text-[#B08B64]"
+              className="flex items-center gap-2 font-sans text-[#202020] transition-all duration-300 hover:text-[#B08B64] disabled:opacity-20"
               style={{ fontSize: "11px", letterSpacing: "0.12em" }}
               aria-label="Proyecto siguiente"
             >
@@ -379,10 +390,8 @@ export function BeforeAfter() {
               <ChevronRight size={13} strokeWidth={1.5} />
             </button>
           </div>
-
         </div>
       </div>
-
     </section>
   );
 }
