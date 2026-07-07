@@ -1,16 +1,12 @@
 // ─── Datos de contacto ──────────────────────────────────────────────────────────
-// TEMPORAL: phone, whatsapp y email son datos de prueba. Sustituir por los
-// definitivos de la empresa en cuanto estén disponibles — son las únicas
-// tres variables que hay que tocar, se usan en toda la web (Hero, Navbar,
-// Footer, Contact) a través de este objeto COMPANY.
 export const COMPANY = {
   name: "SUSI ESCOLANO",
   tagline: "Reformas & Interiorismo",
-  phone: "+34 655 821 170",
-  whatsapp: "34655821170",
+  phone: "+34 678 122 876",
+  whatsapp: "34678122876",
   whatsappMessage:
     "Hola, me gustaría solicitar información sobre una reforma.\n\nSi es posible, me gustaría pedir un presupuesto.\n\nGracias.",
-  email: "juanmarinescolano@gmail.com",
+  email: "info@susiescolano.com",
   landlinePhone: "965 43 71 67",
   address: {
     street: "Carrer la Sénia, 13, Bajo",

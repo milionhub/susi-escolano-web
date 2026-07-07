@@ -9,7 +9,7 @@ import { COMPANY } from "@/lib/constants";
 const EASE = [0.25, 0.46, 0.45, 0.94] as [number, number, number, number];
 
 const WHATSAPP_HREF = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
-  COMPANY.whatsappMessage
+  COMPANY.whatsappMessage,
 )}`;
 const PHONE_HREF = `tel:${COMPANY.phone.replace(/\s+/g, "")}`;
 const EMAIL_HREF = `mailto:${COMPANY.email}`;
@@ -60,7 +60,7 @@ function WhatsAppButton() {
           : "0 8px 20px -14px rgba(79,109,87,0.25)",
       }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="inline-flex w-full items-center justify-center gap-3.5 px-10 py-5 text-[#F6F3EE] font-sans uppercase sm:w-auto"
+      className="inline-flex w-full items-center justify-center gap-3.5 px-10 py-5 font-sans text-[#F6F3EE] uppercase sm:w-auto"
       style={{ fontSize: "10.5px", letterSpacing: "0.22em" }}
     >
       <FaWhatsapp size={16} />
@@ -103,7 +103,7 @@ export function Contact() {
           initial={{ opacity: 0, y: 22, filter: "blur(5px)" }}
           animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 0.85, ease: EASE, delay: 0.14 }}
-          className="mb-4 font-display font-light leading-[1.1] tracking-[-0.02em] text-[#202020]"
+          className="font-display mb-4 leading-[1.1] font-light tracking-[-0.02em] text-[#202020]"
           style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.4rem)" }}
         >
           ¿Empezamos a dar forma a tu proyecto?
@@ -114,7 +114,11 @@ export function Contact() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: EASE, delay: 0.26 }}
           className="mb-12 max-w-[400px] font-sans text-[#6B665F] md:mb-16"
-          style={{ fontSize: "13.5px", lineHeight: "1.78", letterSpacing: "0.01em" }}
+          style={{
+            fontSize: "13.5px",
+            lineHeight: "1.78",
+            letterSpacing: "0.01em",
+          }}
         >
           Cuéntanos qué necesitas y prepararemos una propuesta adaptada a tu
           vivienda.
@@ -155,7 +159,11 @@ export function Contact() {
                 <a
                   href={method.href}
                   target={method.href.startsWith("http") ? "_blank" : undefined}
-                  rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  rel={
+                    method.href.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
                   className="text-right font-sans text-[#202020] transition-colors duration-300 group-hover:text-[#B08B64]"
                   style={{ fontSize: "13px", letterSpacing: "0.01em" }}
                 >

@@ -14,8 +14,7 @@ const EMAIL_HREF = `mailto:${COMPANY.email}`;
 const WHATSAPP_HREF = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
   COMPANY.whatsappMessage
 )}`;
-const MAPS_HREF =
-  "https://maps.google.com/?q=Carrer+la+S%C3%A9nia+13,+03201+Elche";
+const MAPS_HREF = "https://maps.app.goo.gl/X3MSERBrWvCSRYnY7";
 
 const FOOTER_NAV = [
   { label: "Qué hacemos", href: "#que-hacemos" },
@@ -231,8 +230,7 @@ export function Footer() {
                 label="WhatsApp"
                 href={WHATSAPP_HREF}
                 external
-                value="655 82 11 70"
-                note="(temporal para pruebas)"
+                value={COMPANY.phone}
               />
               <ContactRow label="Correo" href={EMAIL_HREF} value={COMPANY.email} />
             </div>

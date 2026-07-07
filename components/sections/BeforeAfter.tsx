@@ -1,102 +1,133 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useRef, useState } from "react";
+import Image from "next/image";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 export interface Transformation {
   id: string;
-  projectName: string;
-  type: string;
-  location: string;
-  year: string;
+  title: string;
   before: { src: string; alt: string };
   after: { src: string; alt: string };
 }
 
 const TRANSFORMATIONS: Transformation[] = [
   {
-    id: "t-01",
-    projectName: "Vivienda en Elche",
-    type: "Reforma integral",
-    location: "El Altet, Alicante",
-    year: "2023",
-    before: { src: "", alt: "Antes — Vivienda en Elche" },
-    after: { src: "", alt: "Después — Vivienda en Elche" },
+    id: "project-01",
+    title: "Terraza en Elche",
+    before: {
+      src: "/images/before-after/project-01/before.jfif",
+      alt: "Antes — Terraza en Elche",
+    },
+    after: {
+      src: "/images/before-after/project-01/after.jfif",
+      alt: "Después — Terraza en Elche",
+    },
   },
   {
-    id: "t-02",
-    projectName: "Cocina en Santa Pola",
-    type: "Reforma de cocina",
-    location: "Santa Pola, Alicante",
-    year: "2023",
-    before: { src: "", alt: "Antes — Cocina en Santa Pola" },
-    after: { src: "", alt: "Después — Cocina en Santa Pola" },
+    id: "project-02",
+    title: "Cocina en Arenales del Sol",
+    before: {
+      src: "/images/before-after/project-02/before.jfif",
+      alt: "Antes — Cocina en Arenales del Sol",
+    },
+    after: {
+      src: "/images/before-after/project-02/after.jfif",
+      alt: "Después — Cocina en Arenales del Sol",
+    },
   },
   {
-    id: "t-03",
-    projectName: "Baño en Alicante",
-    type: "Reforma de baño",
-    location: "Alicante",
-    year: "2024",
-    before: { src: "", alt: "Antes — Baño en Alicante" },
-    after: { src: "", alt: "Después — Baño en Alicante" },
+    id: "project-03",
+    title: "Salón en Alicante",
+    before: {
+      src: "/images/before-after/project-03/before.jfif",
+      alt: "Antes — Salón en Alicante",
+    },
+    after: {
+      src: "/images/before-after/project-03/after.jfif",
+      alt: "Después — Salón en Alicante",
+    },
   },
   {
-    id: "t-04",
-    projectName: "Salón en Crevillente",
-    type: "Interiorismo",
-    location: "Crevillente, Alicante",
-    year: "2024",
-    before: { src: "", alt: "Antes — Salón en Crevillente" },
-    after: { src: "", alt: "Después — Salón en Crevillente" },
+    id: "project-04",
+    title: "Baño en Montesol",
+    before: {
+      src: "/images/before-after/project-04/before.jfif",
+      alt: "Antes — Baño en Montesol",
+    },
+    after: {
+      src: "/images/before-after/project-04/after.jfif",
+      alt: "Después — Baño en Montesol",
+    },
   },
   {
-    id: "t-05",
-    projectName: "Dormitorio en El Altet",
-    type: "Interiorismo",
-    location: "El Altet, Alicante",
-    year: "2024",
-    before: { src: "", alt: "Antes — Dormitorio en El Altet" },
-    after: { src: "", alt: "Después — Dormitorio en El Altet" },
+    id: "project-05",
+    title: "Cocina en Torrevieja",
+    before: {
+      src: "/images/before-after/project-05/before.jfif",
+      alt: "Antes — Cocina en Torrevieja",
+    },
+    after: {
+      src: "/images/before-after/project-05/after.jfif",
+      alt: "Después — Cocina en Torrevieja",
+    },
   },
   {
-    id: "t-06",
-    projectName: "Vivienda en Murcia",
-    type: "Reforma integral",
-    location: "Murcia",
-    year: "2025",
-    before: { src: "", alt: "Antes — Vivienda en Murcia" },
-    after: { src: "", alt: "Después — Vivienda en Murcia" },
+    id: "project-06",
+    title: "Salón y cocina en Elche",
+    before: {
+      src: "/images/before-after/project-06/before.jfif",
+      alt: "Antes — Salón y cocina en Elche",
+    },
+    after: {
+      src: "/images/before-after/project-06/after.jfif",
+      alt: "Después — Salón y cocina en Elche",
+    },
   },
   {
-    id: "t-07",
-    projectName: "Baño en Arenales del Sol",
-    type: "Reforma de baño",
-    location: "Arenales del Sol, Alicante",
-    year: "2025",
-    before: { src: "", alt: "Antes — Baño en Arenales del Sol" },
-    after: { src: "", alt: "Después — Baño en Arenales del Sol" },
+    id: "project-07",
+    title: "Baño en Santa Pola",
+    before: {
+      src: "/images/before-after/project-07/before.jfif",
+      alt: "Antes — Baño en Santa Pola",
+    },
+    after: {
+      src: "/images/before-after/project-07/after.jfif",
+      alt: "Después — Baño en Santa Pola",
+    },
   },
   {
-    id: "t-08",
-    projectName: "Cocina en Elche",
-    type: "Reforma de cocina",
-    location: "Elche, Alicante",
-    year: "2025",
-    before: { src: "", alt: "Antes — Cocina en Elche" },
-    after: { src: "", alt: "Después — Cocina en Elche" },
+    id: "project-08",
+    title: "Salón y cocina en Santa Pola",
+    before: {
+      src: "/images/before-after/project-08/before.jfif",
+      alt: "Antes — Salón y cocina en Santa Pola",
+    },
+    after: {
+      src: "/images/before-after/project-08/after.jfif",
+      alt: "Después — Salón y cocina en Santa Pola",
+    },
   },
   {
-    id: "t-09",
-    projectName: "Vivienda en Torrevieja",
-    type: "Reforma integral",
-    location: "Torrevieja, Alicante",
-    year: "2026",
-    before: { src: "", alt: "Antes — Vivienda en Torrevieja" },
-    after: { src: "", alt: "Después — Vivienda en Torrevieja" },
+    id: "project-09",
+    title: "Cocina en Piles",
+    before: {
+      src: "/images/before-after/project-09/before.jfif",
+      alt: "Antes — Cocina en Piles",
+    },
+    after: {
+      src: "/images/before-after/project-09/after.jfif",
+      alt: "Después — Cocina en Piles",
+    },
   },
 ];
 
@@ -104,42 +135,79 @@ const TRANSFORMATIONS: Transformation[] = [
 
 const EASE = [0.25, 0.46, 0.45, 0.94] as [number, number, number, number];
 
+// ── Scroll entrance (staggered, one block after another) ─────────────────────
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.05 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 26, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: EASE },
+  },
+};
+
 // ── Before / After slider ─────────────────────────────────────────────────────
 
 interface SliderProps {
   transformation: Transformation;
+  priority?: boolean;
 }
 
-function BeforeAfterSlider({ transformation }: SliderProps) {
+function BeforeAfterSlider({ transformation, priority = false }: SliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState(50); // percentage 1–99
-  const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);
+  const [ariaValue, setAriaValue] = useState(50);
+
+  // Raw position follows the pointer exactly; a light spring smooths it into
+  // an elegant, judder-free glide without ever feeling laggy.
+  const rawPosition = useMotionValue(50);
+  const position = useSpring(rawPosition, {
+    stiffness: 420,
+    damping: 42,
+    mass: 0.4,
+  });
+
+  const clipPath = useTransform(position, (v) => `inset(0 ${100 - v}% 0 0)`);
+  const handleLeft = useTransform(position, (v) => `${v}%`);
 
   const updatePosition = useCallback((clientX: number) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
     const pct = ((clientX - rect.left) / rect.width) * 100;
-    setPosition(Math.max(1, Math.min(99, pct)));
-  }, []);
+    rawPosition.set(Math.max(1, Math.min(99, pct)));
+  }, [rawPosition]);
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
-      setIsDragging(true);
+      isDraggingRef.current = true;
       e.currentTarget.setPointerCapture(e.pointerId);
+      updatePosition(e.clientX);
+      setAriaValue(Math.round(rawPosition.get()));
+    },
+    [updatePosition, rawPosition],
+  );
+
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      if (!isDraggingRef.current) return;
       updatePosition(e.clientX);
     },
     [updatePosition],
   );
 
-  const handlePointerMove = useCallback(
-    (e: React.PointerEvent<HTMLDivElement>) => {
-      if (!isDragging) return;
-      updatePosition(e.clientX);
-    },
-    [isDragging, updatePosition],
-  );
-
-  const handlePointerUp = useCallback(() => setIsDragging(false), []);
+  const handlePointerUp = useCallback(() => {
+    isDraggingRef.current = false;
+    setAriaValue(Math.round(rawPosition.get()));
+  }, [rawPosition]);
 
   return (
     <div
@@ -154,46 +222,51 @@ function BeforeAfterSlider({ transformation }: SliderProps) {
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
       role="slider"
-      aria-label="Comparador antes y después"
-      aria-valuenow={Math.round(position)}
+      aria-label={`Comparador antes y después — ${transformation.title}`}
+      aria-valuenow={ariaValue}
       aria-valuemin={1}
       aria-valuemax={99}
     >
       {/* ── After (base layer — always full width) ────────────── */}
-      <div
-        className="absolute inset-0 flex items-end"
-        style={{ background: "#D8D1C8" }}
-      >
+      <div className="absolute inset-0">
+        <Image
+          src={transformation.after.src}
+          alt={transformation.after.alt}
+          fill
+          priority={priority}
+          sizes="(min-width: 768px) 78vw, 100vw"
+          className="pointer-events-none object-cover transition-transform duration-[1400ms] ease-out group-hover/compare:scale-[1.01]"
+        />
         <span
-          className="absolute right-5 bottom-4 font-sans text-white/50"
+          className="pointer-events-none absolute right-5 bottom-4 z-10 font-sans text-white/70"
           style={{ fontSize: "8px", letterSpacing: "0.4em" }}
         >
           DESPUÉS
         </span>
-        {/* Future: <Image src={transformation.after.src} alt={transformation.after.alt} fill className="object-cover" /> */}
       </div>
 
       {/* ── Before (clipped to the left of the handle) ───────── */}
-      <div
-        className="absolute inset-0"
-        style={{
-          clipPath: `inset(0 ${100 - position}% 0 0)`,
-          background: "#ABA39B",
-        }}
-      >
+      <motion.div className="absolute inset-0" style={{ clipPath }}>
+        <Image
+          src={transformation.before.src}
+          alt={transformation.before.alt}
+          fill
+          priority={priority}
+          sizes="(min-width: 768px) 78vw, 100vw"
+          className="pointer-events-none object-cover transition-transform duration-[1400ms] ease-out group-hover/compare:scale-[1.01]"
+        />
         <span
-          className="absolute bottom-4 left-5 font-sans text-white/50"
+          className="pointer-events-none absolute bottom-4 left-5 z-10 font-sans text-white/70"
           style={{ fontSize: "8px", letterSpacing: "0.4em" }}
         >
           ANTES
         </span>
-        {/* Future: <Image src={transformation.before.src} alt={transformation.before.alt} fill className="object-cover" /> */}
-      </div>
+      </motion.div>
 
       {/* ── Divider + handle ─────────────────────────────────── */}
-      <div
+      <motion.div
         className="pointer-events-none absolute top-0 bottom-0"
-        style={{ left: `${position}%`, transform: "translateX(-50%)" }}
+        style={{ left: handleLeft, translateX: "-50%" }}
       >
         {/* Vertical line */}
         <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-white/65" />
@@ -231,7 +304,7 @@ function BeforeAfterSlider({ transformation }: SliderProps) {
             </svg>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -252,146 +325,139 @@ export function BeforeAfter() {
       id="antes-despues"
       className="bg-[#F6F3EE] pt-20 pb-20 md:pt-28 md:pb-40"
     >
-      {/* ── Section header ──────────────────────────────────────── */}
       <motion.div
-        className="mb-10 max-w-[560px] px-[6%] md:mb-14 md:px-[8%]"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.9, ease: EASE }}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
       >
-        <p
-          className="mb-5 font-sans text-[#B08B64] md:mb-6"
-          style={{ fontSize: "9px", letterSpacing: "0.5em" }}
+        {/* ── Section header ──────────────────────────────────────── */}
+        <motion.div
+          variants={itemVariants}
+          className="mb-10 max-w-[560px] px-[6%] md:mb-14 md:px-[8%]"
         >
-          ANTES Y DESPUÉS
-        </p>
-        <h2
-          className="font-display mb-4 leading-[1.06] font-light tracking-[-0.025em] text-[#202020]"
-          style={{ fontSize: "clamp(2.4rem, 5.5vw, 5.2rem)" }}
-        >
-          Cuando el diseño transforma un espacio.
-        </h2>
-        <p
-          className="font-sans text-[#6B665F]"
-          style={{
-            fontSize: "14px",
-            lineHeight: "1.78",
-            letterSpacing: "0.01em",
-            maxWidth: "340px",
-          }}
-        >
-          Descubre algunos de los cambios que mejor reflejan nuestra forma de
-          trabajar.
-        </p>
-      </motion.div>
+          <p
+            className="mb-5 font-sans text-[#B08B64] md:mb-6"
+            style={{ fontSize: "9px", letterSpacing: "0.5em" }}
+          >
+            ANTES Y DESPUÉS
+          </p>
+          <h2
+            className="font-display mb-4 leading-[1.06] font-light tracking-[-0.025em] text-[#202020]"
+            style={{ fontSize: "clamp(2.4rem, 5.5vw, 5.2rem)" }}
+          >
+            Cuando el diseño transforma un espacio.
+          </h2>
+          <p
+            className="font-sans text-[#6B665F]"
+            style={{
+              fontSize: "14px",
+              lineHeight: "1.78",
+              letterSpacing: "0.01em",
+              maxWidth: "340px",
+            }}
+          >
+            Descubre algunos de los cambios que mejor reflejan nuestra forma de
+            trabajar.
+          </p>
+        </motion.div>
 
-      {/* ── Slider ──────────────────────────────────────────────── */}
-      <motion.div
-        className="px-[6%] md:px-[8%]"
-        initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 1, ease: EASE, delay: 0.1 }}
-      >
-        <div className="w-full md:mx-auto md:w-[78%]">
-          {/* Fixed-aspect wrapper so AnimatePresence doesn't collapse the height */}
-          <div className="relative" style={{ aspectRatio: "16 / 10" }}>
-            <AnimatePresence>
-              <motion.div
-                key={current}
-                className="absolute inset-0"
-                initial={{ opacity: 0, scale: 1.015 }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                  transition: { duration: 0.5, ease: EASE },
-                }}
-                exit={{
-                  opacity: 0,
-                  scale: 0.99,
-                  transition: { duration: 0.35, ease: EASE },
-                }}
+        {/* ── Slider + project info share a hover group ────────────── */}
+        <div className="group/compare">
+          <motion.div variants={itemVariants} className="px-[6%] md:px-[8%]">
+            <div className="w-full md:mx-auto md:w-[78%]">
+              {/* Fixed-aspect wrapper so AnimatePresence doesn't collapse the height */}
+              <div
+                className="relative transition-shadow duration-700 ease-out group-hover/compare:shadow-[0_35px_70px_-30px_rgba(32,32,32,0.28)]"
+                style={{ aspectRatio: "16 / 10" }}
               >
-                <BeforeAfterSlider transformation={TRANSFORMATIONS[current]} />
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                <AnimatePresence>
+                  <motion.div
+                    key={current}
+                    className="absolute inset-0"
+                    initial={{ opacity: 0, scale: 1.015 }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                      transition: { duration: 0.5, ease: EASE },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 0.99,
+                      transition: { duration: 0.35, ease: EASE },
+                    }}
+                  >
+                    <BeforeAfterSlider
+                      transformation={TRANSFORMATIONS[current]}
+                      priority={current === 0}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── Project info + navigation ────────────────────────────── */}
+          <motion.div variants={itemVariants} className="px-[6%] md:px-[8%]">
+            <div className="mt-8 w-full md:mx-auto md:mt-10 md:w-[78%]">
+              {/* Title — crossfades on change */}
+              <AnimatePresence mode="wait">
+                <motion.h3
+                  key={current}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.4, ease: EASE },
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -6,
+                    transition: { duration: 0.25, ease: EASE },
+                  }}
+                  className="font-display font-light tracking-[-0.02em] text-[#202020] transition-colors duration-500 group-hover/compare:text-[#141414]"
+                  style={{ fontSize: "clamp(1.2rem, 2vw, 1.5rem)" }}
+                >
+                  {TRANSFORMATIONS[current].title}
+                </motion.h3>
+              </AnimatePresence>
+
+              {/* Navigation */}
+              <div className="mt-10 flex items-center gap-8 md:mt-12">
+                <button
+                  onClick={() => navigate(current - 1)}
+                  disabled={current === 0}
+                  className="flex items-center gap-2 font-sans text-[#202020] transition-all duration-300 hover:text-[#B08B64] disabled:opacity-20"
+                  style={{ fontSize: "11px", letterSpacing: "0.12em" }}
+                  aria-label="Proyecto anterior"
+                >
+                  <ChevronLeft size={13} strokeWidth={1.5} />
+                  ANTERIOR
+                </button>
+
+                <span
+                  className="font-sans text-[#9B9389] tabular-nums"
+                  style={{ fontSize: "10px", letterSpacing: "0.18em" }}
+                >
+                  {String(current + 1).padStart(2, "0")} /{" "}
+                  {String(total).padStart(2, "0")}
+                </span>
+
+                <button
+                  onClick={() => navigate(current + 1)}
+                  disabled={current === total - 1}
+                  className="flex items-center gap-2 font-sans text-[#202020] transition-all duration-300 hover:text-[#B08B64] disabled:opacity-20"
+                  style={{ fontSize: "11px", letterSpacing: "0.12em" }}
+                  aria-label="Proyecto siguiente"
+                >
+                  SIGUIENTE
+                  <ChevronRight size={13} strokeWidth={1.5} />
+                </button>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
-
-      {/* ── Project info + navigation ────────────────────────────── */}
-      <div className="px-[6%] md:px-[8%]">
-        <div className="mt-8 w-full md:mx-auto md:mt-10 md:w-[78%]">
-          {/* Project name + type — crossfades on change */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.4, ease: EASE },
-              }}
-              exit={{
-                opacity: 0,
-                y: -6,
-                transition: { duration: 0.25, ease: EASE },
-              }}
-            >
-              <h3
-                className="font-display mb-1.5 font-light tracking-[-0.02em] text-[#202020]"
-                style={{ fontSize: "clamp(1.2rem, 2vw, 1.5rem)" }}
-              >
-                {TRANSFORMATIONS[current].projectName}
-              </h3>
-              <p
-                className="font-sans text-[#9B9389]"
-                style={{ fontSize: "11px", letterSpacing: "0.06em" }}
-              >
-                {TRANSFORMATIONS[current].type}
-                {" · "}
-                {TRANSFORMATIONS[current].location}
-                {" · "}
-                {TRANSFORMATIONS[current].year}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation */}
-          <div className="mt-10 flex items-center gap-8 md:mt-12">
-            <button
-              onClick={() => navigate(current - 1)}
-              disabled={current === 0}
-              className="flex items-center gap-2 font-sans text-[#202020] transition-all duration-300 hover:text-[#B08B64] disabled:opacity-20"
-              style={{ fontSize: "11px", letterSpacing: "0.12em" }}
-              aria-label="Proyecto anterior"
-            >
-              <ChevronLeft size={13} strokeWidth={1.5} />
-              ANTERIOR
-            </button>
-
-            <span
-              className="font-sans text-[#9B9389] tabular-nums"
-              style={{ fontSize: "10px", letterSpacing: "0.18em" }}
-            >
-              {String(current + 1).padStart(2, "0")} /{" "}
-              {String(total).padStart(2, "0")}
-            </span>
-
-            <button
-              onClick={() => navigate(current + 1)}
-              disabled={current === total - 1}
-              className="flex items-center gap-2 font-sans text-[#202020] transition-all duration-300 hover:text-[#B08B64] disabled:opacity-20"
-              style={{ fontSize: "11px", letterSpacing: "0.12em" }}
-              aria-label="Proyecto siguiente"
-            >
-              SIGUIENTE
-              <ChevronRight size={13} strokeWidth={1.5} />
-            </button>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
