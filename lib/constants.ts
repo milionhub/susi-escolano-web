@@ -1,7 +1,7 @@
 // ─── Datos de contacto ──────────────────────────────────────────────────────────
 export const COMPANY = {
   name: "SUSI ESCOLANO",
-  tagline: "Reformas & Interiorismo",
+  tagline: "Proyectos & Reformas",
   phone: "+34 678 122 876",
   whatsapp: "34678122876",
   whatsappMessage:
