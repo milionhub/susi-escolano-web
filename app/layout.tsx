@@ -17,9 +17,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Susi Escolano | Reformas e Interiorismo en Elche y Alicante",
+  title: "Susi Escolano | Proyectos & Reformas",
   description:
-    "Empresa de reformas integrales e interiorismo en Elche, Alicante y Santa Pola. Reformas de cocinas, baños, salones y dormitorios con diseño premium. Solicita presupuesto sin compromiso.",
+    "Empresa de proyectos, reformas e interiorismo en Elche desde 2009. Reformas integrales, dirección de obra, diseño de interiores y gestión completa del proyecto.",
   keywords: [
     "reformas Elche",
     "reformas integrales Alicante",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "diseño de interiores Elche",
   ],
   openGraph: {
-    title: "Susi Escolano | Reformas & Interiorismo",
+    title: "Susi Escolano | Proyectos & Reformas",
     description:
       "Tu empresa de reformas de confianza en Elche, Alicante y Santa Pola.",
     locale: "es_ES",
