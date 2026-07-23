@@ -25,11 +25,11 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "project-01",
     title: "Terraza en Elche",
     before: {
-      src: "/images/before-after/project-01/before.jfif",
+      src: "/images/before-after/project-01/before.webp",
       alt: "Antes — Terraza en Elche",
     },
     after: {
-      src: "/images/before-after/project-01/after.jfif",
+      src: "/images/before-after/project-01/after.webp",
       alt: "Después — Terraza en Elche",
     },
   },
@@ -37,11 +37,11 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "project-02",
     title: "Cocina en Arenales del Sol",
     before: {
-      src: "/images/before-after/project-02/before.jfif",
+      src: "/images/before-after/project-02/before.webp",
       alt: "Antes — Cocina en Arenales del Sol",
     },
     after: {
-      src: "/images/before-after/project-02/after.jfif",
+      src: "/images/before-after/project-02/after.webp",
       alt: "Después — Cocina en Arenales del Sol",
     },
   },
@@ -49,11 +49,11 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "project-03",
     title: "Salón en Alicante",
     before: {
-      src: "/images/before-after/project-03/before.jfif",
+      src: "/images/before-after/project-03/before.webp",
       alt: "Antes — Salón en Alicante",
     },
     after: {
-      src: "/images/before-after/project-03/after.jfif",
+      src: "/images/before-after/project-03/after.webp",
       alt: "Después — Salón en Alicante",
     },
   },
@@ -61,11 +61,11 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "project-04",
     title: "Baño en Montesol",
     before: {
-      src: "/images/before-after/project-04/before.jfif",
+      src: "/images/before-after/project-04/before.webp",
       alt: "Antes — Baño en Montesol",
     },
     after: {
-      src: "/images/before-after/project-04/after.jfif",
+      src: "/images/before-after/project-04/after.webp",
       alt: "Después — Baño en Montesol",
     },
   },
@@ -73,11 +73,11 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "project-05",
     title: "Cocina en Torrevieja",
     before: {
-      src: "/images/before-after/project-05/before.jfif",
+      src: "/images/before-after/project-05/before.webp",
       alt: "Antes — Cocina en Torrevieja",
     },
     after: {
-      src: "/images/before-after/project-05/after.jfif",
+      src: "/images/before-after/project-05/after.webp",
       alt: "Después — Cocina en Torrevieja",
     },
   },
@@ -85,11 +85,11 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "project-06",
     title: "Salón y cocina en Elche",
     before: {
-      src: "/images/before-after/project-06/before.jfif",
+      src: "/images/before-after/project-06/before.webp",
       alt: "Antes — Salón y cocina en Elche",
     },
     after: {
-      src: "/images/before-after/project-06/after.jfif",
+      src: "/images/before-after/project-06/after.webp",
       alt: "Después — Salón y cocina en Elche",
     },
   },
@@ -97,11 +97,11 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "project-07",
     title: "Baño en Santa Pola",
     before: {
-      src: "/images/before-after/project-07/before.jfif",
+      src: "/images/before-after/project-07/before.webp",
       alt: "Antes — Baño en Santa Pola",
     },
     after: {
-      src: "/images/before-after/project-07/after.jfif",
+      src: "/images/before-after/project-07/after.webp",
       alt: "Después — Baño en Santa Pola",
     },
   },
@@ -109,11 +109,11 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "project-08",
     title: "Salón y cocina en Santa Pola",
     before: {
-      src: "/images/before-after/project-08/before.jfif",
+      src: "/images/before-after/project-08/before.webp",
       alt: "Antes — Salón y cocina en Santa Pola",
     },
     after: {
-      src: "/images/before-after/project-08/after.jfif",
+      src: "/images/before-after/project-08/after.webp",
       alt: "Después — Salón y cocina en Santa Pola",
     },
   },
@@ -121,11 +121,11 @@ const TRANSFORMATIONS: Transformation[] = [
     id: "project-09",
     title: "Cocina en Piles",
     before: {
-      src: "/images/before-after/project-09/before.jfif",
+      src: "/images/before-after/project-09/before.webp",
       alt: "Antes — Cocina en Piles",
     },
     after: {
-      src: "/images/before-after/project-09/after.jfif",
+      src: "/images/before-after/project-09/after.webp",
       alt: "Después — Cocina en Piles",
     },
   },
