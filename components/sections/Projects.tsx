@@ -19,8 +19,16 @@ interface ProjectModalProps {
 
 function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   const [current, setCurrent] = useState(0);
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
   const touchStartX = useRef(0);
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // Reset to first image each time the modal opens (adjust state during
+  // render instead of an effect, per https://react.dev/learn/you-might-not-need-an-effect)
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
+    if (isOpen) setCurrent(0);
+  }
 
   const total = project.images.length;
   const prev = useCallback(() => setCurrent((c) => (c - 1 + total) % total), [total]);
@@ -48,11 +56,6 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
-  }, [isOpen]);
-
-  // Reset to first image each time modal opens
-  useEffect(() => {
-    if (isOpen) setCurrent(0);
   }, [isOpen]);
 
   const counter = `${String(current + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
@@ -107,7 +110,10 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
               onTouchEnd={(e) => {
                 const diff = touchStartX.current - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 55) diff > 0 ? next() : prev();
+                if (Math.abs(diff) > 55) {
+                  if (diff > 0) next();
+                  else prev();
+                }
               }}
             >
               <AnimatePresence mode="sync">

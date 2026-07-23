@@ -229,11 +229,13 @@ function BeforeAfterSlider({ transformation, priority = false }: SliderProps) {
     >
       {/* ── After (base layer — always full width) ────────────── */}
       <div className="absolute inset-0">
-        {/* TEMP DEBUG: next/image swapped for <img> to isolate a prod-only rendering issue */}
-        <img
+        <Image
           src={transformation.after.src}
           alt={transformation.after.alt}
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover/compare:scale-[1.01]"
+          fill
+          priority={priority}
+          sizes="(max-width: 768px) 100vw, 78vw"
+          className="pointer-events-none object-cover transition-transform duration-[1400ms] ease-out group-hover/compare:scale-[1.01]"
         />
         <span
           className="pointer-events-none absolute right-5 bottom-4 z-10 font-sans text-white/70"
@@ -245,11 +247,13 @@ function BeforeAfterSlider({ transformation, priority = false }: SliderProps) {
 
       {/* ── Before (clipped to the left of the handle) ───────── */}
       <motion.div className="absolute inset-0" style={{ clipPath }}>
-        {/* TEMP DEBUG: next/image swapped for <img> to isolate a prod-only rendering issue */}
-        <img
+        <Image
           src={transformation.before.src}
           alt={transformation.before.alt}
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover/compare:scale-[1.01]"
+          fill
+          priority={priority}
+          sizes="(max-width: 768px) 100vw, 78vw"
+          className="pointer-events-none object-cover transition-transform duration-[1400ms] ease-out group-hover/compare:scale-[1.01]"
         />
         <span
           className="pointer-events-none absolute bottom-4 left-5 z-10 font-sans text-white/70"

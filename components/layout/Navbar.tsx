@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "@/lib/constants";
 
@@ -42,20 +43,30 @@ export function Navbar() {
         }}
         className="fixed top-0 left-0 right-0 z-50"
       >
-        <div className="mx-auto max-w-[1440px] px-[4%] h-20 flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] md:gap-6">
+        <div className="mx-auto max-w-[1440px] px-[4%] h-20 flex items-center justify-between xl:grid xl:grid-cols-[1fr_auto_1fr] xl:gap-6">
 
           {/* Logo */}
-          <Link href="#inicio" className="flex flex-col leading-none flex-none">
-            <span className="font-display font-light text-[13px] tracking-[0.28em] uppercase text-[#202020]">
-              {COMPANY.name}
-            </span>
-            <span className="font-sans text-[7.5px] tracking-[0.32em] uppercase text-[#6B665F] mt-[3px]">
-              {COMPANY.tagline}
+          <Link href="#inicio" className="flex items-center gap-2.5 flex-none">
+            <Image
+              src="/images/logo/isotipo.svg"
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 flex-none"
+              aria-hidden="true"
+            />
+            <span className="flex flex-col leading-none">
+              <span className="font-display font-light text-[13px] tracking-[0.28em] uppercase text-[#202020]">
+                {COMPANY.name}
+              </span>
+              <span className="font-sans text-[7.5px] tracking-[0.32em] uppercase text-[#6B665F] mt-[3px]">
+                {COMPANY.tagline}
+              </span>
             </span>
           </Link>
 
           {/* Nav — centered */}
-          <nav className="hidden md:flex justify-center items-center gap-9">
+          <nav className="hidden xl:flex justify-center items-center gap-9">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -71,13 +82,13 @@ export function Navbar() {
           <div className="flex items-center justify-end gap-5">
             <a
               href="#contacto"
-              className="hidden md:block font-sans text-[9px] tracking-[0.2em] uppercase text-[#6B665F] hover:text-[#B08B64] transition-colors duration-300"
+              className="hidden xl:block font-sans text-[9px] tracking-[0.2em] uppercase text-[#6B665F] hover:text-[#B08B64] transition-colors duration-300"
             >
               Hablemos →
             </a>
             <button
               onClick={() => setMenuOpen(true)}
-              className="md:hidden text-[#202020]"
+              className="xl:hidden text-[#202020]"
               aria-label="Abrir menú"
             >
               <Menu size={18} strokeWidth={1.5} />

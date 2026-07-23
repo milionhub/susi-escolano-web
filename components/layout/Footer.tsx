@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
@@ -166,12 +167,22 @@ export function Footer() {
             transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
             className="md:col-span-4"
           >
-            <Link href="#inicio" className="mb-6 flex flex-col leading-none">
-              <span className="font-display text-[14px] font-light tracking-[0.28em] text-[#202020] uppercase">
-                {COMPANY.name}
-              </span>
-              <span className="mt-[3px] font-sans text-[7.5px] tracking-[0.32em] text-[#6B665F] uppercase">
-                {COMPANY.tagline}
+            <Link href="#inicio" className="mb-6 flex items-center gap-2.5">
+              <Image
+                src="/images/logo/isotipo.svg"
+                alt=""
+                width={40}
+                height={40}
+                className="h-10 w-10 flex-none"
+                aria-hidden="true"
+              />
+              <span className="flex flex-col leading-none">
+                <span className="font-display text-[14px] font-light tracking-[0.28em] text-[#202020] uppercase">
+                  {COMPANY.name}
+                </span>
+                <span className="mt-[3px] font-sans text-[7.5px] tracking-[0.32em] text-[#6B665F] uppercase">
+                  {COMPANY.tagline}
+                </span>
               </span>
             </Link>
             <p
