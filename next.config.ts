@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
+    // Next.js sirve las imágenes optimizadas con Content-Disposition: attachment
+    // por defecto, lo que hace que Safari (iOS/mobile) no las renderice inline.
+    contentDispositionType: "inline",
   },
   // Permite acceder al servidor de desarrollo desde otros dispositivos
   // de la misma red local (p. ej. para probar en el móvil).
