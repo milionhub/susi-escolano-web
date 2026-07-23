@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import { SITE } from "@/lib/constants";
+import { getLocalBusinessSchema } from "@/lib/schema";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -32,9 +34,8 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
-  title: "Susi Escolano | Proyectos & Reformas",
-  description:
-    "Empresa especializada en proyectos, reformas integrales e interiorismo en la provincia de Alicante. Desde 2009 transformamos espacios con un servicio integral, cercano y de confianza.",
+  title: SITE.title,
+  description: SITE.description,
   keywords: [
     "reformas Elche",
     "reformas integrales Alicante",
@@ -47,10 +48,9 @@ export const metadata: Metadata = {
     "diseño de interiores Elche",
   ],
   openGraph: {
-    title: "Susi Escolano | Proyectos & Reformas",
+    title: SITE.title,
 
-    description:
-      "Empresa especializada en proyectos, reformas integrales e interiorismo en la provincia de Alicante. Desde 2009 transformamos espacios con un servicio integral, cercano y de confianza.",
+    description: SITE.description,
 
     url: "/",
 
@@ -71,9 +71,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Susi Escolano | Proyectos & Reformas",
-    description:
-      "Empresa especializada en proyectos, reformas integrales e interiorismo en la provincia de Alicante. Desde 2009 transformamos espacios con un servicio integral, cercano y de confianza.",
+    title: SITE.title,
+    description: SITE.description,
     images: ["/og-image.png"],
   },
 };
@@ -88,7 +87,13 @@ export default function RootLayout({
       lang="es"
       className={`${cormorant.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getLocalBusinessSchema()) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

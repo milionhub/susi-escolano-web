@@ -1,3 +1,10 @@
+// ─── Metadata del sitio ─────────────────────────────────────────────────────────
+export const SITE = {
+  title: "Susi Escolano | Proyectos & Reformas",
+  description:
+    "Empresa especializada en proyectos, reformas integrales e interiorismo en la provincia de Alicante. Desde 2009 transformamos espacios con un servicio integral, cercano y de confianza.",
+} as const;
+
 // ─── Datos de contacto ──────────────────────────────────────────────────────────
 export const COMPANY = {
   name: "SUSI ESCOLANO",
