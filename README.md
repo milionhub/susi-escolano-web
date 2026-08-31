@@ -18,7 +18,7 @@ El proyecto fue diseñado y desarrollado desde cero con el objetivo de crear una
 - Portfolio de proyectos y galerías de imágenes.
 - Comparativas visuales de reformas antes/después.
 - Presentación estructurada de servicios y proceso de trabajo.
-- Formularios y vías de contacto orientadas a conversión.
+- Formularios y vías de contacto orientados a conversión.
 - Integración directa con WhatsApp.
 - Optimización de rendimiento y experiencia de usuario.
 - SEO técnico y metadatos para mejorar la visibilidad en buscadores.
@@ -52,7 +52,22 @@ El proyecto fue diseñado y desarrollado desde cero con el objetivo de crear una
 
 El proyecto utiliza **Next.js con App Router** y una arquitectura basada en componentes reutilizables.
 
-La interfaz se divide en diferentes secciones independientes que permiten mantener una estructura modular y facilitar la evolución del proyecto.
+```text
+susi-escolano-web/
+│
+├── app/              # Rutas, layouts y páginas
+├── components/       # Componentes reutilizables de interfaz
+├── lib/              # Utilidades y lógica compartida
+├── public/           # Imágenes y recursos estáticos
+│
+├── components.json
+├── next.config.ts
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+La interfaz está dividida en secciones independientes para mantener una estructura modular, facilitar el mantenimiento y permitir la evolución del proyecto.
 
 Entre las principales secciones se encuentran:
 
@@ -64,8 +79,6 @@ Entre las principales secciones se encuentran:
 - Sobre nosotros
 - Contacto
 - Footer
-
-Los componentes compartidos y elementos de interfaz se reutilizan para mantener consistencia visual y reducir duplicación de código.
 
 ---
 
@@ -83,13 +96,13 @@ Se trabajaron especialmente:
 - Experiencia de contacto sencilla.
 - Consistencia entre dispositivos.
 
-Las animaciones se implementaron con **Framer Motion**, manteniendo un equilibrio entre impacto visual y rendimiento.
+Las animaciones se implementaron con **Framer Motion**, buscando mantener un equilibrio entre impacto visual y rendimiento.
 
 ---
 
 ## 🔍 SEO y rendimiento
 
-El proyecto incorpora diferentes optimizaciones orientadas a mejorar tanto el posicionamiento como la experiencia de usuario:
+El proyecto incorpora diferentes optimizaciones orientadas tanto al posicionamiento como a la experiencia de usuario:
 
 - Metadatos SEO.
 - Estructura semántica del contenido.
@@ -98,22 +111,7 @@ El proyecto incorpora diferentes optimizaciones orientadas a mejorar tanto el po
 - Diseño responsive.
 - Optimización de carga y rendimiento.
 - Estructura preparada para indexación por buscadores.
-- URLs y contenido estructurados de forma clara.
-
----
-
-## 📁 Estructura del proyecto
-
-```text
-src/
-├── app/              # Rutas, layouts y páginas
-├── components/       # Componentes reutilizables
-├── lib/              # Utilidades y lógica compartida
-└── ...
-
-public/
-└── ...               # Imágenes y recursos estáticos
-```
+- Contenido organizado de forma clara para usuarios y motores de búsqueda.
 
 ---
 
@@ -122,8 +120,8 @@ public/
 Clona el repositorio:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
-cd <NOMBRE_DEL_REPOSITORIO>
+git clone https://github.com/milionhub/susi-escolano-web.git
+cd susi-escolano-web
 ```
 
 Instala las dependencias:
